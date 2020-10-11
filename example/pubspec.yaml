@@ -17,3 +17,7 @@ dependencies:
 
 flutter:
   uses-material-design: false
+  assets:
+    - assets/audio/music/bg_music.ogg
+    - assets/audio/sfx/fire_1.mp3
+    - assets/audio/sfx/fire_2.mp3
