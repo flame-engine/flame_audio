@@ -1,9 +1,9 @@
 import 'package:flame/anchor.dart';
+import 'package:flame/extensions/vector2.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/palette.dart';
-import 'package:flame/position.dart';
 import 'package:flame/text_config.dart';
 import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -32,12 +32,12 @@ class AudioGame extends BaseGame with TapDetector {
   static Paint gray = PaletteEntry(Color(0xFFCCCCCC)).paint;
   static TextConfig text = TextConfig(color: BasicPalette.white.color);
 
-  AudioGame(Size size) {
+  AudioGame(Vector2 size) {
     this.size = size;
     startBgmMusic();
   }
 
-  Rect get button => Rect.fromLTWH(20, size.height - 300, size.width - 40, 200);
+  Rect get button => Rect.fromLTWH(20, size.y - 300, size.x - 40, 200);
 
   void startBgmMusic() {
     FlameAudio.bgm.play('music/bg_music.ogg');
@@ -53,12 +53,13 @@ class AudioGame extends BaseGame with TapDetector {
 
   @override
   void render(Canvas canvas) {
-    canvas.drawRect(Offset.zero & size, black);
+    super.render(canvas);
+    canvas.drawRect(size.toRect(), black);
 
     text.render(
       canvas,
       '(click anywhere for 1)',
-      Position(size.width / 2, 200),
+      Vector2(size.x / 2, 200),
       anchor: Anchor.topCenter,
     );
 
@@ -67,13 +68,10 @@ class AudioGame extends BaseGame with TapDetector {
     text.render(
       canvas,
       'click here for 2',
-      Position(size.width / 2, size.height - 200),
+      Vector2(size.x / 2, size.y - 200),
       anchor: Anchor.bottomCenter,
     );
   }
-
-  @override
-  void update(double t) {}
 
   @override
   void onTapDown(TapDownDetails details) {
