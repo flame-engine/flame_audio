@@ -1,9 +1,8 @@
 import 'dart:io';
 
+import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
-
-import 'package:flame/flame.dart';
 
 /// The looping background music class.
 ///
@@ -14,8 +13,13 @@ import 'package:flame/flame.dart';
 /// to keep running.
 class Bgm extends WidgetsBindingObserver {
   bool _isRegistered = false;
+  AudioCache audioCache;
   AudioPlayer audioPlayer;
   bool isPlaying = false;
+
+  Bgm({AudioCache audioCache}) {
+    this.audioCache = audioCache ?? AudioCache();
+  }
 
   /// Registers a [WidgetsBinding] observer.
   ///
@@ -52,7 +56,7 @@ class Bgm extends WidgetsBindingObserver {
     }
 
     isPlaying = true;
-    audioPlayer = await Flame.audio.loopLongAudio(filename, volume: volume);
+    audioPlayer = await audioCache.loop(filename, volume: volume);
   }
 
   /// Stops the currently playing background music track (if any).
@@ -82,23 +86,23 @@ class Bgm extends WidgetsBindingObserver {
 
   /// Pre-fetch an audio and store it in the cache.
   ///
-  /// Alias of `FlameAudio.load();`.
-  Future<File> load(String file) => Flame.audio.load(file);
+  /// Alias of `audioCache.load();`.
+  Future<File> load(String file) => audioCache.load(file);
 
   /// Pre-fetch a list of audios and store them in the cache.
   ///
-  /// Alias of `FlameAudio.loadAll();`.
-  Future<List<File>> loadAll(List<String> files) => Flame.audio.loadAll(files);
+  /// Alias of `audioCache.loadAll();`.
+  Future<List<File>> loadAll(List<String> files) => audioCache.loadAll(files);
 
   /// Clears the file in the cache.
   ///
-  /// Alias of `FlameAudio.clear();`.
-  void clear(String file) => Flame.audio.clear(file);
+  /// Alias of `audioCache.clear();`.
+  void clear(String file) => audioCache.clear(file);
 
   /// Clears all the audios in the cache.
   ///
-  /// Alias of `FlameAudio.clearAll();`.
-  void clearAll() => Flame.audio.clearAll();
+  /// Alias of `audioCache.clearAll();`.
+  void clearCache() => audioCache.clearCache();
 
   /// Handler for AppLifecycleState changes.
   ///
