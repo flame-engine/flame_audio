@@ -46,3 +46,6 @@ app.*.map.json
 android
 ios
 web
+integration_test
+macos
+test

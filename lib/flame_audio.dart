@@ -9,7 +9,7 @@ import 'bgm.dart';
 /// Alternatively you can create your own instances and control them yourself.
 class FlameAudio {
   /// Access a shared instance of the [AudioCache] class.
-  static AudioCache audioCache = AudioCache(prefix: 'audio/');
+  static AudioCache audioCache = AudioCache(prefix: 'assets/audio/');
 
   /// Plays a single run of the given [file]
   static Future<AudioPlayer> play(String file, {volume = 1.0}) {

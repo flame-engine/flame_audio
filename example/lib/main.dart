@@ -1,6 +1,5 @@
 import 'package:flame/anchor.dart';
 import 'package:flame/extensions/vector2.dart';
-import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/palette.dart';
@@ -12,12 +11,7 @@ import 'package:flutter/widgets.dart' hide Animation;
 AudioPool pool = AudioPool('fire_2.mp3', minPlayers: 3, maxPlayers: 4);
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final size = await Flame.util.initialDimensions();
-  await pool.init();
-
-  final game = AudioGame(size);
-  runApp(game.widget);
+  runApp(GameWidget(game: AudioGame()));
 }
 
 /// This example game showcases three possible use cases:
@@ -32,8 +26,9 @@ class AudioGame extends BaseGame with TapDetector {
   static Paint gray = PaletteEntry(Color(0xFFCCCCCC)).paint;
   static TextConfig text = TextConfig(color: BasicPalette.white.color);
 
-  AudioGame(Vector2 size) {
-    this.size = size;
+  @override
+  Future<void> onLoad() async {
+    await pool.init();
     startBgmMusic();
   }
 
