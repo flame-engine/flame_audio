@@ -1,6 +1,6 @@
 name: flame_audio
 description: Audio support for the Flame game engine. This containst all audio related code will live in the future, using the audioplayers package.
-version: 0.1.0-rc2
+version: 0.1.0-rc3
 homepage: https://github.com/flame-engine/flame_audio
 
 environment:
