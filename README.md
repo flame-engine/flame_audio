@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-Adds audio support for [https://github.com/flame-engine/flame](Flame) using the [https://github.com/luanpotter/audioplayers](audioplayers) package.
+Adds audio support for <a href="https://github.com/flame-engine/flame">Flame</a> using the <a href="https://github.com/luanpotter/audioplayers">audioplayers</a> package.
 </p>
 
 <p align="center">
@@ -15,6 +15,8 @@ Adds audio support for [https://github.com/flame-engine/flame](Flame) using the 
   <img src="https://github.com/flame-engine/flame_audio/workflows/Lint/badge.svg?branch=master&event=push" alt="Test" />
   <a title="Discord" href="https://discord.gg/pxrBmy4" ><img src="https://img.shields.io/discord/509714518008528896.svg" /></a>
 </p>
+
+---
 
 This package makes it easy to add audio capabilities to your games, integrating [https://github.com/luanpotter/audioplayers](audioplayers) features seamless into your Flame game code.
 
