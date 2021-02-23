@@ -1,9 +1,7 @@
-import 'package:flame/anchor.dart';
-import 'package:flame/extensions/vector2.dart';
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/palette.dart';
-import 'package:flame/text_config.dart';
 import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/widgets.dart' hide Animation;
