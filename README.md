@@ -25,4 +25,4 @@ Add this as a dependency alongside Flame v1 to your game if you want to play bac
 # Credits
 
  * The [Flame engine team](https://github.com/orgs/flame-engine/people) who is continuously working on maintaining and improving Flame.
- * [Luanpotter](https://github.com/luanpotter)'s (the Flame founder) [audioplayers](https://github.com/luanpotter/audioplayer) lib, which in turn is forked from [rxlabz's](https://github.com/rxlabz/audioplayer).
+ * [Luanpotter](https://github.com/luanpotter)'s [audioplayers](https://github.com/luanpotter/audioplayer) lib, which in turn is forked from [rxlabz's](https://github.com/rxlabz/audioplayer).
