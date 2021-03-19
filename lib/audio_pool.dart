@@ -11,7 +11,7 @@ typedef void Stoppable();
 /// All AudioPlayers loaded are for the same [sound]. If you want multiple sounds use multiple [AudioPool].
 /// Use this class if you'd like have extremely quick firing, repetitive and simultaneous sounds, like shooting a laser in a fast-paced spaceship game.
 class AudioPool {
-  late AudioCache cache;
+  final AudioCache cache;
   Map<String, AudioPlayer> currentPlayers = {};
   List<AudioPlayer> availablePlayers = [];
 
@@ -27,9 +27,7 @@ class AudioPool {
     this.maxPlayers = 1,
     this.minPlayers = 1,
     String prefix = 'assets/audio/sfx/',
-  }) {
-    cache = AudioCache(prefix: prefix);
-  }
+  }): cache = AudioCache(prefix: prefix);
 
   Future init() async {
     for (int i = 0; i < minPlayers; i++) {
