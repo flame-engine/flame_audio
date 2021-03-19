@@ -11,11 +11,11 @@ typedef void Stoppable();
 /// All AudioPlayers loaded are for the same [sound]. If you want multiple sounds use multiple [AudioPool].
 /// Use this class if you'd like have extremely quick firing, repetitive and simultaneous sounds, like shooting a laser in a fast-paced spaceship game.
 class AudioPool {
-  AudioCache cache;
+  late AudioCache cache;
   Map<String, AudioPlayer> currentPlayers = {};
   List<AudioPlayer> availablePlayers = [];
 
-  String sound;
+  final String sound;
   bool repeating;
   int minPlayers, maxPlayers;
 
@@ -47,18 +47,21 @@ class AudioPool {
       await player.setVolume(volume);
       await player.resume();
 
-      StreamSubscription<void> subscription;
+      late StreamSubscription<void> subscription;
 
       final Stoppable stop = () {
         _lock.synchronized(() async {
-          final AudioPlayer p = currentPlayers.remove(player.playerId);
-          subscription?.cancel();
-          await p.stop();
-          if (availablePlayers.length >= maxPlayers) {
-            await p.release();
-          } else {
-            availablePlayers.add(p);
+          if (currentPlayers.containsKey(player.playerId)) {
+            final AudioPlayer p = currentPlayers.remove(player.playerId)!;
+            subscription.cancel();
+            await p.stop();
+            if (availablePlayers.length >= maxPlayers) {
+              await p.release();
+            } else {
+              availablePlayers.add(p);
+            }
           }
+          
         });
       };
 

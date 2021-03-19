@@ -40,6 +40,5 @@ class FlameAudio {
   /// Access a shared instance of the [Bgm] class.
   ///
   /// This will use the same global audio cache from [FlameAudio].
-  static Bgm _bgm;
-  static Bgm get bgm => _bgm ??= Bgm(audioCache: audioCache);
+  static late final Bgm bgm = Bgm(audioCache: audioCache);
 }
