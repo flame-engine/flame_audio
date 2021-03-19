@@ -1,5 +1,5 @@
 ## [next]
-* Update audioplayers
+* Updated `audioplayers` version
 * Update Flame
 * Add support to null safety
 
