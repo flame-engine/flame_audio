@@ -27,7 +27,7 @@ class AudioPool {
     this.maxPlayers = 1,
     this.minPlayers = 1,
     String prefix = 'assets/audio/sfx/',
-  }): cache = AudioCache(prefix: prefix);
+  }) : cache = AudioCache(prefix: prefix);
 
   Future init() async {
     for (int i = 0; i < minPlayers; i++) {
