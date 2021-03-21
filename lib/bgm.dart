@@ -17,7 +17,7 @@ class Bgm extends WidgetsBindingObserver {
   AudioPlayer? audioPlayer;
   bool isPlaying = false;
 
-  Bgm({AudioCache? audioCache}) {
+  Bgm({AudioCache? audioCache}) : this.audioCache = audioCache ?? AudioCache()
     this.audioCache = audioCache ?? AudioCache();
   }
 
