@@ -6,8 +6,6 @@ import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/widgets.dart' hide Animation;
 
-AudioPool pool = AudioPool('fire_2.mp3', minPlayers: 3, maxPlayers: 4);
-
 void main() async {
   runApp(GameWidget(game: AudioGame()));
 }
@@ -24,9 +22,11 @@ class AudioGame extends BaseGame with TapDetector {
   static Paint gray = PaletteEntry(Color(0xFFCCCCCC)).paint;
   static TextConfig text = TextConfig(color: BasicPalette.white.color);
 
+  late AudioPool pool;
+
   @override
   Future<void> onLoad() async {
-    await pool.init();
+    pool = await AudioPool.create('fire_2.mp3', minPlayers: 3, maxPlayers: 4);
     startBgmMusic();
   }
 
@@ -34,6 +34,7 @@ class AudioGame extends BaseGame with TapDetector {
 
   void startBgmMusic() {
     FlameAudio.bgm.play('music/bg_music.ogg');
+    FlameAudio.bgm.initialize();
   }
 
   void fireOne() {

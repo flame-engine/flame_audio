@@ -47,8 +47,10 @@ class Bgm extends WidgetsBindingObserver {
   /// It is safe to call this function even when a current BGM track is
   /// playing.
   Future<void> play(String filename, {double volume = 1}) async {
-    if (audioPlayer != null && audioPlayer!.state != AudioPlayerState.STOPPED) {
-      audioPlayer!.stop();
+    final currentPlayer = audioPlayer;
+    if (currentPlayer != null &&
+        currentPlayer.state != AudioPlayerState.STOPPED) {
+      currentPlayer.stop();
     }
 
     isPlaying = true;
