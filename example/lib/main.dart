@@ -33,8 +33,8 @@ class AudioGame extends BaseGame with TapDetector {
   Rect get button => Rect.fromLTWH(20, size.y - 300, size.x - 40, 200);
 
   void startBgmMusic() {
-    FlameAudio.bgm.play('music/bg_music.ogg');
     FlameAudio.bgm.initialize();
+    FlameAudio.bgm.play('music/bg_music.ogg');
   }
 
   void fireOne() {
