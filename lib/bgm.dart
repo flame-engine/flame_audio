@@ -13,13 +13,11 @@ import 'package:flutter/widgets.dart';
 /// to keep running.
 class Bgm extends WidgetsBindingObserver {
   bool _isRegistered = false;
-  AudioCache audioCache;
-  AudioPlayer audioPlayer;
+  late AudioCache audioCache;
+  AudioPlayer? audioPlayer;
   bool isPlaying = false;
 
-  Bgm({AudioCache audioCache}) {
-    this.audioCache = audioCache ?? AudioCache();
-  }
+  Bgm({AudioCache? audioCache}) : this.audioCache = audioCache ?? AudioCache();
 
   /// Registers a [WidgetsBinding] observer.
   ///
@@ -29,7 +27,7 @@ class Bgm extends WidgetsBindingObserver {
       return;
     }
     _isRegistered = true;
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
   }
 
   /// Dispose the [WidgetsBinding] observer.
@@ -37,7 +35,7 @@ class Bgm extends WidgetsBindingObserver {
     if (!_isRegistered) {
       return;
     }
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     _isRegistered = false;
   }
 
@@ -48,11 +46,11 @@ class Bgm extends WidgetsBindingObserver {
   ///
   /// It is safe to call this function even when a current BGM track is
   /// playing.
-  Future<void> play(String filename, {double volume}) async {
-    volume ??= 1;
-
-    if (audioPlayer != null && audioPlayer.state != AudioPlayerState.STOPPED) {
-      audioPlayer.stop();
+  Future<void> play(String filename, {double volume = 1}) async {
+    final currentPlayer = audioPlayer;
+    if (currentPlayer != null &&
+        currentPlayer.state != AudioPlayerState.STOPPED) {
+      currentPlayer.stop();
     }
 
     isPlaying = true;
@@ -63,7 +61,7 @@ class Bgm extends WidgetsBindingObserver {
   Future<void> stop() async {
     isPlaying = false;
     if (audioPlayer != null) {
-      await audioPlayer.stop();
+      await audioPlayer!.stop();
     }
   }
 
@@ -71,7 +69,7 @@ class Bgm extends WidgetsBindingObserver {
   Future<void> resume() async {
     if (audioPlayer != null) {
       isPlaying = true;
-      await audioPlayer.resume();
+      await audioPlayer!.resume();
     }
   }
 
@@ -80,7 +78,7 @@ class Bgm extends WidgetsBindingObserver {
   Future<void> pause() async {
     if (audioPlayer != null) {
       isPlaying = false;
-      await audioPlayer.pause();
+      await audioPlayer!.pause();
     }
   }
 
@@ -113,7 +111,7 @@ class Bgm extends WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       if (isPlaying && audioPlayer?.state == AudioPlayerState.PAUSED) {
-        audioPlayer.resume();
+        audioPlayer?.resume();
       }
     } else {
       audioPlayer?.pause();
