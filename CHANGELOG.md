@@ -1,4 +1,4 @@
-## [next]
+## [0.1.0-rc5]
 * Updated `audioplayers` version
 * Updated Flame version
 * Add support to null safety
