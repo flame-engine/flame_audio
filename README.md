@@ -1,4 +1,4 @@
-# flame_audio
+# This repository has moved to the [Flame monorepo](https://github.com/flame-engine/flame/tree/main/packages/flame_audio)
 
 <p align="center">
   <a href="https://flame-engine.org">
